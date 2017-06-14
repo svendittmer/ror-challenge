@@ -1,8 +1,20 @@
 inherit_from: .rubocop_todo.yml
 AllCops:
+  TargetRubyVersion: '2.4'
   Include:
     - Rakefile
     - config.ru
     - lib/**/*.rake
   Exclude:
     - db/schema.rb
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/FileName:
+  Exclude:
+    - 'Gemfile'
+
+Style/AsciiComments:
+  Exclude:
+    - 'config/initializers/money.rb'
