@@ -1,0 +1,14 @@
+%h1
+  = %(Details of product "#{@product.name}")
+%h4 Price
+%p
+  = @product.price
+%h4 Tags
+%p ...
+
+%p
+  = link_to 'edit', edit_product_path
+%p
+  = link_to 'destroy', product_path, method: :delete
+%p
+  = link_to 'index', products_path

@@ -1,0 +1,19 @@
+%h1 Products
+%ul
+  - @products.each do |product|
+    %li
+      %span
+        = link_to product.name, product
+      %span
+        = ' - '
+      %span
+        = link_to 'edit', edit_product_path(product)
+      %span
+        = ' - '
+      %span
+        = link_to 'destroy', product_path(product), method: :delete
+
+= paginate @products
+
+%p
+  = link_to 'new product', new_product_path

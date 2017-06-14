@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'hamlit'
 gem 'kaminari'
 gem 'money-rails'
+gem 'simple_form'
 
 group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
