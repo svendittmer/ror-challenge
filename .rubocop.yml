@@ -18,3 +18,7 @@ Style/FileName:
 Style/AsciiComments:
   Exclude:
     - 'config/initializers/money.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
