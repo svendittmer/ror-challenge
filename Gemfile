@@ -34,9 +34,13 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'hamlit'
+gem 'kaminari'
 gem 'money-rails'
 
 group :development, :test do
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.5'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
