@@ -41,6 +41,7 @@ gem 'rails-assets-bootstrap', source: 'https://rails-assets.org'
 gem 'simple_form'
 
 group :development, :test do
+  gem 'capybara'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.5'

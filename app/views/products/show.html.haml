@@ -8,18 +8,21 @@
       %thead
         %tr
           %th Title
+          %th Usage
           %th
       %tbody
-        - @product.taggings.each do |tagging|
+        - @product.taggings.includes(:tag).each do |tagging|
+          - tag = tagging.tag
           %tr
-            %td= tagging.tag.title
+            %td= tag.title
+            %td= "Used in #{tag.usage_count} products"
             %td
               = link_to 'remove', tagging_path(tagging), class: 'btn btn-default', method: :delete
 
     %p
-      = link_to 'edit', edit_product_path, class: 'btn btn-default'
-      = link_to 'delete', product_path, class: 'btn btn-default', method: :delete
-      = link_to 'index', products_path, class: 'btn btn-default'
+      = link_to 'edit', edit_product_path(@product), class: 'btn btn-default'
+      = link_to 'delete', product_path(@product), class: 'btn btn-default', method: :delete
+      = link_to 'index', products_path(@product), class: 'btn btn-default'
 
 %h4 New Tag
 = simple_form_for([@product, Tag.new]) do |f|
