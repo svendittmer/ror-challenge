@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'hamlit'
 gem 'kaminari'
 gem 'money-rails'
+gem 'rails-assets-bootstrap', source: 'https://rails-assets.org'
 gem 'simple_form'
 
 group :development, :test do

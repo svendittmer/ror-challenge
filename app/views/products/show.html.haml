@@ -1,14 +1,14 @@
-%h1
-  = %(Details of product "#{@product.name}")
-%h4 Price
-%p
-  = @product.price
-%h4 Tags
-%p ...
+.row
+  .col-xs-12
+    %h1
+      = %(Details of product "#{@product.name}")
+    %h4 Price
+    %p
+      = humanized_money_with_symbol @product.price
+    %h4 Tags
+    %p ...
 
-%p
-  = link_to 'edit', edit_product_path
-%p
-  = link_to 'destroy', product_path, method: :delete
-%p
-  = link_to 'index', products_path
+    %p
+      = link_to 'edit', edit_product_path, class: 'btn btn-default'
+      = link_to 'delete', product_path, class: 'btn btn-default', method: :delete
+      = link_to 'index', products_path, class: 'btn btn-default'
