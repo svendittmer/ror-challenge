@@ -23,3 +23,15 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'config/initializers/simple_form_bootstrap.rb'
+
+Style/Documentation:
+  Exclude:
+    - 'db/migrate/*'
+    - 'config/application.rb'
+    - 'app/controllers/application_controller.rb'
+    - 'app/helpers/application_helper.rb'
+    - 'app/mailers/application_mailer.rb'
+    - 'app/models/application_record.rb'
+
+Style/GuardClause:
+  Enabled: false

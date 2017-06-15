@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    @products = Product.page params[:page]
+    @products = Product.page(params[:page]).includes(taggings: :tag)
   end
 
   # GET /products/:id
@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+    @product.tags << Array.new(3, Tag.new)
   end
 
   # GET /products/:id/edit
@@ -50,6 +51,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :price)
+    params.require(:product).permit(:name, :price, tags_attributes: %i[title])
   end
 end

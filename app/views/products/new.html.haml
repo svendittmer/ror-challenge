@@ -1,4 +1,17 @@
 .row
   .col-xs-12
     %h1 New Product
-    = render 'form'
+    = simple_form_for(@product) do |f|
+      = f.error_notification
+      .form-inputs
+        .form-group
+          = f.input :name
+          = f.input :price
+
+        .form-group
+          %h3 Tags
+          = f.simple_fields_for :tags do |tag|
+            = tag.input :title
+
+      .form-actions
+        = f.button :submit

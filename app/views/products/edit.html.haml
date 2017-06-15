@@ -1,4 +1,11 @@
 .row
   .col-xs-12
     %h1 Editing Product
-    = render 'form'
+    = simple_form_for(@product) do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input :name
+        = f.input :price
+
+      .form-actions
+        = f.button :submit

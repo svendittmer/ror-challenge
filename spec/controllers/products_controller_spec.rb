@@ -4,7 +4,7 @@ RSpec.describe ProductsController, type: :controller do
   describe 'GET /products' do
     context 'more than 10 availabe products' do
       before(:example) do
-        create_list(:product, 15)
+        create_list(:product, 15, tags: build_list(:tag, 3))
       end
 
       it 'assigns a maximum of 10 products' do
@@ -21,7 +21,7 @@ RSpec.describe ProductsController, type: :controller do
 
     context 'less than 10 availabe products' do
       before(:example) do
-        create_list(:product, 5)
+        create_list(:product, 5, tags: build_list(:tag, 3))
       end
 
       it 'assigns all products' do
@@ -34,7 +34,7 @@ RSpec.describe ProductsController, type: :controller do
   describe 'POST /products' do
     context 'with valid parameters' do
       let(:attr) do
-        { product: attributes_for(:product) }
+        { product: attributes_for(:product).merge(tags_attributes: Array.new(3) { attributes_for(:tag) }) }
       end
 
       it 'creates a new product and redirects there' do
@@ -56,7 +56,7 @@ RSpec.describe ProductsController, type: :controller do
 
   describe 'PUT /products/:id' do
     before(:example) do
-      @product = create(:product, name: 'old name', price: 1.99)
+      @product = create(:product, name: 'old name', price: 1.99, tags: build_list(:tag, 3))
     end
 
     context 'with valid parameters' do
@@ -85,7 +85,7 @@ RSpec.describe ProductsController, type: :controller do
 
   describe 'DELETE /products/:id' do
     before(:example) do
-      @product = create(:product, name: 'old name', price: 1.99)
+      @product = create(:product, tags: build_list(:tag, 3))
     end
 
     it 'deletes the product and redirects to /products' do

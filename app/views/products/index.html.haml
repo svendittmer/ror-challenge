@@ -6,20 +6,16 @@
         %tr
           %th Name
           %th Price
-          %th{ colspan: '2' }
+          %th
       %tbody
         - @products.each do |product|
           %tr
+            %td= link_to product.name, product
+            %td= humanized_money_with_symbol product.price
             %td
-              = link_to product.name, product
-            %td
-              = product.price
-            %td
-              = link_to 'edit', edit_product_path(product)
-            %td
-              = link_to 'destroy', product_path(product), method: :delete
+              = link_to 'edit', edit_product_path(product), class: 'btn btn-default'
+              = link_to 'destroy', product_path(product), class: 'btn btn-default', method: :delete
 
 = paginate @products
 
-%p
-  = link_to 'New product', new_product_path
+%p= link_to 'New product', new_product_path
