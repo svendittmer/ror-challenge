@@ -4,9 +4,9 @@
     %h3 Price:
     %p.lead= humanized_money_with_symbol @product.price
     %p
-    = link_to 'edit', edit_product_path(@product), class: 'btn btn-default'
-    = link_to 'delete', product_path(@product), class: 'btn btn-default', method: :delete
-    = link_to 'index', products_path(@product), class: 'btn btn-default'
+      = link_to 'edit', edit_product_path(@product), class: 'btn btn-default'
+      = link_to 'delete', product_path(@product), class: 'btn btn-default', method: :delete
+      = link_to 'index', products_path, class: 'btn btn-default'
 
     %h2 Tags
     %table.table
@@ -24,7 +24,7 @@
             %td
               = link_to 'remove', tagging_path(tagging), class: 'btn btn-default', method: :delete
 
-    = simple_form_for([@product, Tag.new]) do |f|
+    = simple_form_for([@product, @tag]) do |f|
       = f.error_notification
       .form-inputs
         = f.input :title

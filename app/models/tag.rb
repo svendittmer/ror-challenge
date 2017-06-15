@@ -1,6 +1,10 @@
 # implements tagging functionality for products
 class Tag < ApplicationRecord
-  validates :title, presence: true
+  before_save { self.title = title.strip }
+
+  validates :title,
+            presence: true,
+            format: { with: /\A[^,]*\z/, message: 'allows no comma' }
 
   has_many :taggings
 

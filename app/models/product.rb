@@ -16,6 +16,18 @@ class Product < ApplicationRecord
 
   attr_accessor :tags_attributes
 
+  # returns all products that include all given tags
+  def self.search_by_tags(tag_titles)
+    tag_titles.each_with_index.reduce(Product.all) do |relation, (term, index)|
+      taggings_alias = "taggings_#{index}"
+      tag_alias = "tag_#{index}"
+      relation
+        .joins("INNER JOIN taggings AS #{taggings_alias} ON #{taggings_alias}.product_id = products.id")
+        .joins("INNER JOIN tags AS #{tag_alias} ON #{taggings_alias}.tag_id = #{tag_alias}.id")
+        .where("#{tag_alias}.title = ?", term)
+    end
+  end
+
   # removes a tagging if possible
   def remove_tagging(tagging)
     taggings.destroy(tagging) if tags.size > MINIMUM_TAG_COUNT

@@ -5,11 +5,16 @@ class ProductsController < ApplicationController
   # GET /products
   def index
     @q = Product.ransack(params[:q])
-    @products = @q.result.page(params[:page]).includes(taggings: :tag)
+    @products =
+      @q.result
+        .search_by_tags(tag_search_params)
+        .page(params[:page]).includes(taggings: :tag)
   end
 
   # GET /products/:id
-  def show; end
+  def show
+    @tag = Tag.new
+  end
 
   # GET /products/new
   def new
@@ -46,6 +51,10 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def tag_search_params
+    params[:search_by_tags]&.split(',')&.map(&:strip) || []
+  end
 
   def set_product
     @product = Product.find(params[:id])

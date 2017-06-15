@@ -53,8 +53,8 @@ RSpec.feature 'Sortable product list', type: :feature do
 
     click_link('Price')
 
-    fill_in 'minimum price', with: '5.59'
-    fill_in 'maximum price', with: '59.59'
+    fill_in 'Minimum price', with: '5.59'
+    fill_in 'Maximum price', with: '59.59'
 
     click_button('Search')
 

@@ -42,5 +42,5 @@ en:
       lt: less than
     attributes:
       product:
-        price_cents_gteq_euros: minimum price
-        price_cents_lteq_euros: maximum price
+        price_cents_gteq_euros: Minimum price
+        price_cents_lteq_euros: Maximum price

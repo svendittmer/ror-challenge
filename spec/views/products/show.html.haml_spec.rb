@@ -12,6 +12,8 @@ describe 'products/show' do
                        }
     ))
 
+    assign(:tag, Tag.new)
+
     Product.create([{
                      name: 'Tasty product',
                      price: 13.99,
