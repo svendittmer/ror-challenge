@@ -4,8 +4,8 @@
     %table.table
       %thead
         %tr
-          %th Name
-          %th Price
+          %th= sort_link(@q, :name)
+          %th= sort_link(@q, :price_cents, 'Price')
           %th
       %tbody
         - @products.each do |product|

@@ -38,6 +38,7 @@ gem 'hamlit'
 gem 'kaminari'
 gem 'money-rails'
 gem 'rails-assets-bootstrap', source: 'https://rails-assets.org'
+gem 'ransack'
 gem 'simple_form'
 
 group :development, :test do

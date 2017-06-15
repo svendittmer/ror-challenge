@@ -4,7 +4,8 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    @products = Product.page(params[:page]).includes(taggings: :tag)
+    @q = Product.ransack(params[:q])
+    @products = @q.result.page(params[:page]).includes(taggings: :tag)
   end
 
   # GET /products/:id
