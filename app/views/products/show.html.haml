@@ -1,9 +1,14 @@
 .row
   .col-xs-12
     %h1= %(Details of product "#{@product.name}")
-    %h4 Price
-    %p= humanized_money_with_symbol @product.price
-    %h4 Tags
+    %h3 Price:
+    %p.lead= humanized_money_with_symbol @product.price
+    %p
+    = link_to 'edit', edit_product_path(@product), class: 'btn btn-default'
+    = link_to 'delete', product_path(@product), class: 'btn btn-default', method: :delete
+    = link_to 'index', products_path(@product), class: 'btn btn-default'
+
+    %h2 Tags
     %table.table
       %thead
         %tr
@@ -19,16 +24,28 @@
             %td
               = link_to 'remove', tagging_path(tagging), class: 'btn btn-default', method: :delete
 
-    %p
-      = link_to 'edit', edit_product_path(@product), class: 'btn btn-default'
-      = link_to 'delete', product_path(@product), class: 'btn btn-default', method: :delete
-      = link_to 'index', products_path(@product), class: 'btn btn-default'
+    = simple_form_for([@product, Tag.new]) do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input :title
 
-%h4 New Tag
-= simple_form_for([@product, Tag.new]) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :title
+      .form-actions
+        = f.button :submit
 
-  .form-actions
-    = f.button :submit
+    %h2 Similar Products
+    %table.table
+      %thead
+        %tr
+          %th Product
+          %th Price
+          %th Similarity
+          %th Tags
+      %tbody
+        - @product.most_similar_products.each do |match|
+          - product = match.product
+          - similiarity = match.similarity
+          %tr
+            %td= link_to product.name, product
+            %td= humanized_money_with_symbol product.price
+            %td= number_to_percentage similiarity, precision: 2
+            %td= product.tags.pluck(:title).join(' - ')

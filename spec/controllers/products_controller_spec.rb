@@ -33,8 +33,15 @@ RSpec.describe ProductsController, type: :controller do
 
   describe 'POST /products' do
     context 'with valid parameters' do
+      let(:tag_attributes) do
+        Array
+          .new(3) { attributes_for(:tag) }
+          .map.with_index { |attributes, index| [index, attributes] }
+          .to_h
+      end
+
       let(:attr) do
-        { product: attributes_for(:product).merge(tags_attributes: Array.new(3) { attributes_for(:tag) }) }
+        { product: attributes_for(:product).merge(tags_attributes: tag_attributes) }
       end
 
       it 'creates a new product and redirects there' do
