@@ -1,6 +1,14 @@
 .row
   .col-xs-12
     %h1 Products
+    = search_form_for @q, class: 'form-inline' do |f|
+      .form-inputs
+        = f.search_field :s, type: :hidden, value: params.dig(:q, :s)
+        = f.label :price_cents_gteq_euros
+        = f.search_field :price_cents_gteq_euros, class: 'form-control'
+        = f.label :price_cents_lteq_euros
+        = f.search_field :price_cents_lteq_euros, class: 'form-control'
+        = f.submit class: 'btn btn-default'
     %table.table
       %thead
         %tr
@@ -16,6 +24,6 @@
               = link_to 'edit', edit_product_path(product), class: 'btn btn-default'
               = link_to 'destroy', product_path(product), class: 'btn btn-default', method: :delete
 
-= paginate @products
+    = paginate @products
 
-%p= link_to 'New product', new_product_path
+    %p= link_to 'New product', new_product_path
